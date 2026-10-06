@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Test - {{ test_nomi }}{% endblock %}
+{% block bosh %}
+<style>
+  .panel{position:sticky;top:0;z-index:5;background:var(--karta);
+     border:1px solid var(--chegara);border-radius:0 0 14px 14px;border-top:0;
+     padding:12px 18px;display:flex;justify-content:space-between;align-items:center;
+     gap:12px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(16,24,40,.07)}
+  .soat{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--asos)}
+  .soat.ogoh{color:var(--sariq)} .soat.xavf{color:var(--qizil)}
+  .savol{background:var(--karta);border:1px solid var(--chegara);border-radius:14px;
+     padding:20px 22px;margin-bottom:14px}
+  .savol.belgilangan{border-left:4px solid var(--yashil);padding-left:19px}
+  .savol h3{margin:0 0 14px;font-size:16.5px;line-height:1.5;font-weight:600}
+  .savol h3 span{color:var(--asos);margin-right:6px}
+  .var{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;
+     border:1px solid var(--chegara);border-radius:9px;margin-bottom:8px;
+     cursor:pointer;font-weight:400;font-size:15.5px}
+  .var:hover{background:var(--asos-och);border-color:#c4d4ff}
+  .var input{margin:3px 0 0;flex:0 0 auto;width:17px;height:17px;accent-color:var(--asos)}
+  .var.tanlangan{background:var(--asos-och);border-color:var(--asos)}
+  .kop{font-size:13px;color:var(--sariq);font-weight:600;margin:-8px 0 10px}
+</style>
+{% endblock %}
+{% block tana %}
+<div class="panel">
+  <div><b>{{ ism }}</b><div class="sokin" id="hisob">Belgilangan: 0 / {{ savollar|length }}</div></div>
+  <div class="soat" id="soat">--:--</div>
+  <button form="testForm" class="tugma" type="submit" id="yuborTepa">Testni yakunlash</button>
+</div>
+
+<form method="post" action="{{ url_for('topshirish') }}" id="testForm">
+  {% for s in savollar %}
+  <div class="savol" data-qid="{{ s.qid }}">
+    <h3><span>{{ s.n }}.</span>{{ s.matn }}</h3>
+    {% if s.kop %}<div class="kop">Bir nechta to'g'ri javobni belgilang</div>{% endif %}
+    {% for v in s.variantlar %}
+    <label class="var">
+      <input type="{{ 'checkbox' if s.kop else 'radio' }}"
+             name="q_{{ s.qid }}" value="{{ v.idx }}">
+      <span>{{ v.matn }}</span>
+    </label>
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <div class="karta" style="text-align:center">
+    <p class="sokin">Javoblaringizni tekshirib chiqing. Yakunlagach o'zgartirib bo'lmaydi.</p>
+    <button class="tugma" type="submit">Testni yakunlash</button>
+  </div>
+</form>
+
+<script>
+(function(){
+  var qolgan = {{ qolgan }};
+  var soat = document.getElementById('soat');
+  var forma = document.getElementById('testForm');
+  var yuborilmoqda = false;
+
+  function chiz(){
+    var d = Math.floor(qolgan/60), s = qolgan%60;
+    soat.textContent = (d<10?'0':'')+d+':'+(s<10?'0':'')+s;
+    soat.className = 'soat' + (qolgan<=60?' xavf':(qolgan<=300?' ogoh':''));
+  }
+  chiz();
+  var taymer = setInterval(function(){
+    qolgan--;
+    if(qolgan<=0){ clearInterval(taymer); chiz();
+      yuborilmoqda=true; alert('Vaqt tugadi. Javoblaringiz yuborilmoqda.');
+      forma.submit(); return; }
+    chiz();
+  },1000);
+
+  function hisobla(){
+    var jami = forma.querySelectorAll('.savol').length, n = 0;
+    forma.querySelectorAll('.savol').forEach(function(k){
+      var bor = k.querySelector('input:checked') !== null;
+      k.classList.toggle('belgilangan', bor);
+      if(bor) n++;
+    });
+    document.getElementById('hisob').textContent = 'Belgilangan: '+n+' / '+jami;
+    return {n:n, jami:jami};
+  }
+
+  forma.addEventListener('change', function(e){
+    var q = e.target.closest('.savol');
+    if(q){ q.querySelectorAll('.var').forEach(function(l){
+      l.classList.toggle('tanlangan', l.querySelector('input').checked); }); }
+    hisobla();
+  });
+  hisobla();
+
+  forma.addEventListener('submit', function(e){
+    if(yuborilmoqda) return;
+    var h = hisobla();
+    var xabar = h.n < h.jami
+      ? (h.jami-h.n)+' ta savol javobsiz qoldi. Shunday yakunlaysizmi?'
+      : 'Testni yakunlaysizmi?';
+    if(!confirm(xabar)){ e.preventDefault(); return; }
+    yuborilmoqda = true;
+  });
+
+  window.addEventListener('beforeunload', function(e){
+    if(!yuborilmoqda){ e.preventDefault(); e.returnValue=''; }
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Natija{% endblock %}
+{% block tana %}
+<div class="karta" style="text-align:center">
+  <h1>Test yakunlandi</h1>
+  <p class="sokin">{{ test_nomi }} · {{ u.ism }}</p>
+
+  <div style="font-size:52px;font-weight:700;color:var(--asos);margin:18px 0 2px">
+    {{ u.foiz }}%
+  </div>
+  <p style="font-size:18px;margin:0">
+    {{ u.togri }} / {{ u.jami }} to'g'ri javob
+  </p>
+  <p style="font-size:20px;font-weight:700;margin:14px 0 0">Baho: {{ u.baho }}</p>
+  <p class="sokin" style="margin-top:18px">
+    Natijangiz saqlandi. Ushbu sahifani yopishingiz mumkin.</p>
+</div>
+
+{% if xatolar %}
+<div class="karta">
+  <h2>Xato javoblar ({{ xatolar|length }} ta)</h2>
+  {% for x in xatolar %}
+  <div style="padding:12px 0;border-bottom:1px solid var(--chegara)">
+    <p style="font-weight:600;margin:0 0 6px">{{ x.matn }}</p>
+    <p style="margin:0;color:var(--qizil);font-size:14.5px">
+      Sizning javobingiz: {{ x.sizniki|join('; ') }}</p>
+    <p style="margin:2px 0 0;color:var(--yashil);font-size:14.5px">
+      To'g'ri javob: {{ x.togri|join('; ') }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

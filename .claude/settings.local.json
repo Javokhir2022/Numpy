@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(code \"d:\\\\d.s course\\\\notebook.ipynb\")",
+      "PowerShell($p = @\\(\"$env:LOCALAPPDATA\\\\Programs\\\\Microsoft VS Code\\\\bin\\\\code.cmd\",\"$env:ProgramFiles\\\\Microsoft VS Code\\\\bin\\\\code.cmd\"\\) | Where-Object { Test-Path $_ } | Select-Object -First 1; if \\($p\\) { & $p \"d:\\\\d.s course\\\\notebook.ipynb\"; \"opened via $p\" } else { \"code.cmd topilmadi\" })",
+      "PowerShell($code = \"$env:LOCALAPPDATA\\\\Programs\\\\Microsoft VS Code\\\\bin\\\\code.cmd\"; & $code --list-extensions | Select-String -Pattern \"colab|jupyter|python\")",
+      "PowerShell(python \"d:\\\\d.s course\\\\hello-world.py\")",
+      "PowerShell(python -c \"cars=['bmw','audi','porsh','volvo','chevrolet']; print\\(sorted\\(cars\\)\\); print\\(sorted\\(['Bmw','audi','Porsh','volvo']\\)\\); print\\(sorted\\(['olma','Olma','banan','1-uy','ayiq']\\)\\)\")",
+      "PowerShell(python -c \"cars=['bmw','audi','porsh','volvo','chevrolet']; print\\(cars[2:0:4]\\); print\\(cars[0:4]\\); print\\(cars[1:4]\\); print\\(cars[:3]\\); print\\(cars[2:]\\); print\\(cars[0:5:2]\\); print\\(cars[2:0:-1]\\); print\\(cars[::-1]\\)\")",
+      "PowerShell(python -c \"import py_compile,sys; py_compile.compile\\(r'd:\\\\d.s course\\\\hello-world.py', doraise=True\\); print\\('SYNTAX OK'\\)\")",
+      "PowerShell([System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\in70.txt\",\"70`r`n\"\\); [System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\in40.txt\",\"40`r`n\"\\); cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\in70.txt\"\"\"; cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\in40.txt\"\"\")",
+      "PowerShell(python -c \"import py_compile; py_compile.compile\\(r'd:\\\\d.s course\\\\hello-world.py', doraise=True\\); print\\('SYNTAX OK - xato yoq'\\)\")",
+      "PowerShell([System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\t1.txt\",\"yakshanba`r`n35`r`n\"\\); [System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\t2.txt\",\"yakshanba`r`n20`r`n\"\\); [System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\t3.txt\",\"dushanba`r`n35`r`n\"\\); cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\t1.txt\"\"\"; cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\t2.txt\"\"\"; cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\t3.txt\"\"\")",
+      "PowerShell([System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\m1.txt\",\"manti`r`n\"\\); [System.IO.File]::WriteAllText\\(\"$env:TEMP\\\\m2.txt\",\"somsa`r`n\"\\); cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\m1.txt\"\"\"; cmd /c \"python \"\"d:\\\\d.s course\\\\hello-world.py\"\" < \"\"%TEMP%\\\\m2.txt\"\"\")",
+      "PowerShell(python \"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--d-s-course\\\\e24735de-f858-499e-8bb4-6307eaad18e5\\\\scratchpad\\\\t.py\")"
+    ]
+  }
+}

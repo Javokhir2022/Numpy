@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{{ test_nomi }}{% endblock %}
+{% block tana %}
+<div class="karta">
+  <h1>{{ test_nomi }}</h1>
+  <p class="sokin">Savollar soni: <b>{{ savol_soni }}</b> &nbsp;·&nbsp;
+     Vaqt: <b>{{ daqiqa }} daqiqa</b></p>
+
+  <div class="maslahat" style="margin-top:16px">
+    <b>Diqqat:</b> Test bir marta topshiriladi. "Testni boshlash" tugmasini
+    bosganingizdan so'ng vaqt hisobi ketadi va uni to'xtatib bo'lmaydi.
+    Vaqt tugasa javoblaringiz avtomatik yuboriladi.
+  </div>
+
+  <form method="post" autocomplete="on">
+    <label for="ism">Ism-familiyangiz</label>
+    <input id="ism" name="ism" type="text" required minlength="3"
+           placeholder="Aliyev Vali" value="{{ request.form.ism or '' }}">
+
+    <label for="email">Email{% if domen %} (@{{ domen }}){% endif %}</label>
+    <input id="email" name="email" type="email" required
+           placeholder="ismingiz@{{ domen or 'gmail.com' }}"
+           value="{{ request.form.email or '' }}">
+
+    <label for="guruh">Guruh <span class="sokin">(ixtiyoriy)</span></label>
+    <input id="guruh" name="guruh" type="text" placeholder="DS-101"
+           value="{{ request.form.guruh or '' }}">
+
+    {% if xato %}<div class="xato">{{ xato }}</div>{% endif %}
+
+    <p style="margin-top:22px"><button class="tugma" type="submit">Testni boshlash</button></p>
+  </form>
+</div>
+{% endblock %}

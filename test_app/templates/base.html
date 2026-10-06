@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Test{% endblock %}</title>
+<style>
+  :root{
+    --fon:#f2f4f8; --karta:#ffffff; --matn:#1b2130; --sokin:#6b7688;
+    --asos:#2f5fe0; --asos-och:#eaf0ff; --chegara:#dde2ec;
+    --yashil:#1a9a63; --qizil:#d64545; --sariq:#c98a12;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fon);color:var(--matn);
+       font:16px/1.55 "Segoe UI",system-ui,Arial,sans-serif}
+  .sahifa{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+  .karta{background:var(--karta);border:1px solid var(--chegara);
+         border-radius:14px;padding:26px;margin-bottom:18px;
+         box-shadow:0 1px 3px rgba(16,24,40,.05)}
+  h1{font-size:25px;margin:0 0 6px}
+  h2{font-size:19px;margin:0 0 14px}
+  .sokin{color:var(--sokin);font-size:14.5px}
+  label{display:block;font-weight:600;margin:14px 0 6px;font-size:14.5px}
+  input[type=text],input[type=email]{width:100%;padding:11px 13px;font-size:16px;
+      border:1px solid var(--chegara);border-radius:9px;background:#fff;color:inherit}
+  input:focus{outline:2px solid var(--asos);outline-offset:1px;border-color:var(--asos)}
+  .tugma{display:inline-block;background:var(--asos);color:#fff;border:0;
+      padding:12px 26px;font-size:16px;font-weight:600;border-radius:9px;
+      cursor:pointer;text-decoration:none}
+  .tugma:hover{filter:brightness(1.08)}
+  .tugma.kul{background:#e7eaf1;color:var(--matn)}
+  .tugma.kichik{padding:7px 14px;font-size:14px}
+  .xato{background:#fdeaea;border:1px solid #f5c2c2;color:#a02626;
+        padding:11px 14px;border-radius:9px;margin-top:14px;font-size:14.5px}
+  .maslahat{background:var(--asos-och);border:1px solid #cddaff;
+        padding:12px 15px;border-radius:9px;font-size:14.5px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  th,td{padding:9px 10px;border-bottom:1px solid var(--chegara);text-align:left}
+  th{background:#f7f9fc;font-weight:600;font-size:13.5px;color:var(--sokin)}
+  tr:hover td{background:#fafbfe}
+</style>
+{% block bosh %}{% endblock %}
+</head>
+<body>
+<div class="sahifa">
+{% block tana %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}O'qituvchi paneli{% endblock %}
+{% block tana %}
+<div class="karta" style="max-width:400px;margin:60px auto">
+  <h1>O'qituvchi paneli</h1>
+  <form method="post">
+    <label for="parol">Parol</label>
+    <input id="parol" name="parol" type="password" required autofocus
+           style="width:100%;padding:11px 13px;font-size:16px;
+                  border:1px solid var(--chegara);border-radius:9px">
+    {% if xato %}<div class="xato">{{ xato }}</div>{% endif %}
+    <p style="margin-top:20px"><button class="tugma" type="submit">Kirish</button></p>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ sarlavha }}{% endblock %}
+{% block tana %}
+<div class="karta" style="text-align:center">
+  <h1>{{ sarlavha }}</h1>
+  <p class="sokin" style="font-size:16px">{{ matn }}</p>
+  <p style="margin-top:20px">
+    <a class="tugma kul" href="{{ url_for('kirish') }}">Bosh sahifa</a></p>
+</div>
+{% endblock %}
